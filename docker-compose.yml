@@ -138,6 +138,33 @@ services:
       chainnet:
         ipv4_address: 172.25.0.125
 
+  eth-net-intelligence-api:
+    hostname: eth-net-intelligence-api
+    depends_on:
+      - geth-dev-node
+    ports:
+      - 30303:30303
+      - 30303:30303/udp
+    build:
+      context: ./eth-net-intelligence-api
+    container_name: eth-net-intelligence-api
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.200
+
+  eth-netstats:
+    hostname: eth-netstats
+    depends_on:
+      - geth-dev-node
+    ports:
+      - 3000:3000
+    build:
+      context: ./eth-netstats
+    container_name: eth-netstats
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.201
+
 networks:
   chainnet:
     driver: bridge
